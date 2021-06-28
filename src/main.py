@@ -39,7 +39,7 @@ if __name__ == "__main__":
     logger.info("Starting RFID Cards Manager")
 
     sg.theme('SystemDefault')
-    window = sg.Window('Login', login_layout)
+    window = sg.Window('Students RFID Manager - Login', login_layout)
 
     while not is_logged:
         event, values = window.read()
@@ -66,7 +66,7 @@ if __name__ == "__main__":
                 window["error_message"].update(f"Connection to the database '{db}' could not be stablished", visible=True)
     
     window.close()
-    window = sg.Window('Main', main_layout)
+    window = sg.Window('Students RFID Manager', main_layout)
 
     students_handler = StudentsHandler(odoo_connection)
 
