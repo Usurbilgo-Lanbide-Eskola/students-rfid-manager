@@ -1,4 +1,4 @@
-odoo-ule-handler==0.0.8
+odoo-ule-handler==0.0.9
 PySimpleGUI==4.45.0
 wheel==0.36.2
 pyinstaller==4.3
