@@ -40,8 +40,11 @@ class StudentsHandler(object):
         return student_courses
 
     def __get_student_user(self, odoo_student):
-        student_user_id = odoo_student.get("user_id")[0]
-        return self.users.get(student_user_id)
+        try:
+            student_user_id = odoo_student.get("user_id")[0]
+            return self.users.get(student_user_id)
+        except TypeError:
+            return None
 
     def __search_local_student(self, identification_code): # Should be replaced by student code
         for id, student in self.all_students.items():
