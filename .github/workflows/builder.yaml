@@ -1,4 +1,4 @@
-name: Students RFID Manager Builder
+name: ULE RFID Manager Builder
 
 on: [push]
 
@@ -21,4 +21,4 @@ jobs:
           pip install -r requirements.txt
       - name: Build with pyinstaller
         run: |
-          pyinstaller --name students-rfid-manager -w -F src/main.py
+          pyinstaller --name ule-rfid-manager -w -F src/main.py

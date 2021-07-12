@@ -1,4 +1,4 @@
-name: Students RFID Manager Release
+name: ULE RFID Manager Release
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
 
 jobs:
   create_release:
-    name: Students RFID Manager Create Release
-    runs-on: [ubuntu-latest]
+    name: ULE RFID Manager Create Release
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Students RFID Manager ${{ github.ref }}
+          release_name: ULE RFID Manager ${{ github.ref }}
           draft: false
           prerelease: false
       - name: Output Release URL File
@@ -30,7 +30,7 @@ jobs:
           name: release_url
           path: release_url.txt
   build_and_upload_nix:
-    name: Students RFID Manager Build and Upload (*nix)
+    name: ULE RFID Manager Build and Upload (*nix)
     strategy:
       matrix:
         platform: [ubuntu-18.04, ubuntu-20.04, macos-latest]
@@ -48,7 +48,7 @@ jobs:
           pip install -r requirements.txt
       - name: Build with pyinstaller
         run: |
-          pyinstaller --name students-rfid-manager -w -F src/main.py
+          pyinstaller --name ule-rfid-manager -w -F src/main.py
       - name: Load Release URL File
         uses: actions/download-artifact@v1
         with:
@@ -65,11 +65,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.get_release_info.outputs.upload_url }}  
-          asset_path: ./dist/students-rfid-manager
-          asset_name: students-rfid-manager-${{ matrix.platform }}
+          asset_path: ./dist/ule-rfid-manager
+          asset_name: ule-rfid-manager-${{ matrix.platform }}
           asset_content_type: application/octet-stream
   build_and_upload_windows:
-    name: Students RFID Manager Build and Upload (Windows)
+    name: ULE RFID Manager Build and Upload (Windows)
     strategy:
       matrix:
         platform: [windows-latest]
@@ -87,7 +87,7 @@ jobs:
           pip install -r requirements.txt
       - name: Build with pyinstaller
         run: |
-          pyinstaller --name students-rfid-manager -w -F src/main.py
+          pyinstaller --name ule-rfid-manager -w -F src/main.py
       - name: Load Release URL File
         uses: actions/download-artifact@v1
         with:
@@ -104,6 +104,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.get_release_info.outputs.upload_url }}  
-          asset_path: ./dist/students-rfid-manager.exe
-          asset_name: students-rfid-manager-${{ matrix.platform }}.exe
+          asset_path: ./dist/ule-rfid-manager.exe
+          asset_name: ule-rfid-manager-${{ matrix.platform }}.exe
           asset_content_type: application/octet-stream
